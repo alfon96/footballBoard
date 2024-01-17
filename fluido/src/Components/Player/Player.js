@@ -1,23 +1,29 @@
 import Image from "react-bootstrap/Image";
-import firstKit from "../../assets/firstKit.png";
-import firstKitGoalkeeper from "../../assets/firstKitGoalkeeper.png";
 import classes from "./Player.module.css";
 import Badge from "react-bootstrap/Badge";
 import { Container, Row, Col } from "react-bootstrap";
+import styled from "styled-components";
 
-const Player = ({ name, number, position, isCaptain }) => {
-  const kit = position === "P" ? firstKitGoalkeeper : firstKit;
+const Player = ({ name, number, position, isCaptain, kit }) => {
+  const kitSrc = require(`../../assets/kits/${kit}/${
+    position === "P" ? "goalkeeperKit" : "kit"
+  }.png`);
 
   return (
     <>
-
       <div className={`${classes.container}  m-0 p-0`}>
-        <Image src={kit} className={classes.kitImage}></Image>
+        <Image src={kitSrc} className={classes.kitImage}></Image>
         {/* Number */}
         <div
           className={`${classes.playerNumberContainer} d-flex justify-content-center`}
         >
-          <p className={classes.playerNumberText}>{number}</p>
+          <p
+            className={`${classes.playerNumberText}  ${
+              kit > 0 && classes.playerNumberTextLightKit
+            }`}
+          >
+            {number}
+          </p>
         </div>
         {/* Name */}
 
@@ -33,7 +39,6 @@ const Player = ({ name, number, position, isCaptain }) => {
       >
         <p className={`${classes.playerNameText} rounded-2 px-2`}>{name}</p>
       </div>
-
     </>
   );
 };

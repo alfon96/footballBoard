@@ -1,0 +1,10 @@
+.container {
+  width: 75px;
+  height: 120px;
+  position: relative;
+  z-index: 99;
+}
+
+.upperContainer {
+  flex-wrap: wrap;
+}

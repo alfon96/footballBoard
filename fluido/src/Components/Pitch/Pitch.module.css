@@ -1,5 +1,5 @@
 .pitchImg {
-  object-fit: contain;
+  object-fit: fill;
   width: 100%;
   height: 100%;
 }
@@ -10,4 +10,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  margin-top: 20px;
+}
+
+.colorPicker {
+  z-index: 100;
 }
