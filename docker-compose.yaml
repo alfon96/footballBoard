@@ -1,0 +1,14 @@
+version: "3"
+services:
+  fluido:
+    build:
+      context: fluido
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./fluido/src:/app/src
+      - ./fluido/public:/app/public
+      - ./fluido/package.json:/app/package.json
+
+    ports:
+      - "3000:3000"

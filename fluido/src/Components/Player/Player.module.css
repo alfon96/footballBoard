@@ -1,0 +1,49 @@
+.container {
+  max-width: 180px;
+  height: 73.87px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.kitImage {
+  width: 65px;
+  height: 100%;
+  position: absolute;
+}
+
+.playerNameContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.playerNameText {
+  background-color: #333333e1;
+  color: #eee;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+
+  white-space: nowrap;
+}
+
+.playerNumberContainer {
+  position: absolute;
+  text-align: center;
+
+  top: 10px;
+  width: 100%;
+}
+
+.playerNumberText {
+  color: #eee;
+  font-size: 35px;
+}
+
+.captainBadge {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  text-align: center;
+}
