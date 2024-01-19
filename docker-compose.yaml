@@ -9,6 +9,7 @@ services:
       - ./fluido/src:/app/src
       - ./fluido/public:/app/public
       - ./fluido/package.json:/app/package.json
+      - ./fluido/build:/app/build
 
     ports:
       - "3000:3000"
