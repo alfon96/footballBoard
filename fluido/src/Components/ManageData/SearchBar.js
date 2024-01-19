@@ -6,7 +6,14 @@ import { FaSearch } from "react-icons/fa";
 import Player from "../Player/Player";
 import classes from "./SearchBar.module.css";
 
-const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
+const SearchBar = ({
+  players,
+  kit,
+  correctiveAction,
+  playerTotalHeight,
+  modalShow,
+  setModalShow,
+}) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const onChangeHandler = (e) => {
@@ -52,7 +59,7 @@ const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
       </Form>
 
       <div
-        className={`d-flex justify-content-center align-items-center gap-3 ${classes.upperContainer}`}
+        className={`d-flex  justify-content-center align-items-center gap-3 mt-4  ${classes.upperContainer}`}
       >
         {searchResults &&
           searchResults.map((player) => {
@@ -63,6 +70,8 @@ const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
                 style={{ height: playerTotalHeight }}
               >
                 <Player
+                  modalShow={modalShow}
+                  setModalShow={setModalShow}
                   key={player.number}
                   number={player.number}
                   name={player.name}

@@ -2,9 +2,11 @@
   width: 73.104px;
   height: 90px;
   position: relative;
-  z-index: 99;
+  z-index: 10 !important;
 }
 
 .upperContainer {
   flex-wrap: wrap;
+  z-index: 11 !important;
+  position: relative;
 }

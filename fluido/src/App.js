@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ManageData from "./Components/ManageData/ManageData";
 import SimpleToast from "./Components/ManageData/SimpleToast";
+import DropdownForm from "./Components/DropdownForm/ModalForm";
+import ModalForm from "./Components/DropdownForm/ModalForm";
 
 function App() {
   const playerShirtStartingHeight = 76.95;
@@ -33,6 +35,11 @@ function App() {
     show: false,
     type: "success",
     message: "",
+  });
+  const [modalShow, setModalShow] = useState({
+    show: false,
+    type: "edit",
+    playerInfo: null,
   });
   const [formState, setFormState] = useState({
     name: "",
@@ -132,6 +139,8 @@ function App() {
       </Row>
       <Row className=" mt-5 p-3 d-flex justify-content-center bench align-items-center bg-warning">
         <ManageData
+          modalShow={modalShow}
+          setModalShow={setModalShow}
           players={players}
           setPlayers={setPlayers}
           kit={kit}
@@ -149,6 +158,13 @@ function App() {
           ></SimpleToast>
         )}
       </Row>
+
+      {modalShow.show && (
+        <ModalForm
+          modalInfo={modalShow.show}
+          onHide={() => setModalShow(false)}
+        ></ModalForm>
+      )}
     </Container>
   );
 }

@@ -90,13 +90,27 @@ html {
 
 /* Default styles for .captainBadge */
 .captainBadge {
-  position: absolute;
-  top: 0px;
-  right: 0; /* 5px in rem */
-  transform: translate(0, -50%);
   text-align: center;
 }
 
 .playerNumberTextLightKit {
   color: #141217 !important;
+}
+
+.editBadge {
+  text-align: center;
+}
+
+.removeBadge {
+  text-align: center;
+}
+
+.containerBadges {
+  position: absolute;
+  height: 100%;
+  width: 35%;
+  top: -10px;
+  right: 5px;
+  transform: translate(25%, 0);
+  text-align: center;
 }

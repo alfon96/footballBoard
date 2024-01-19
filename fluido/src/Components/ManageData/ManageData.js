@@ -15,6 +15,8 @@ function ManageData({
   setShowToast,
   formState,
   setFormState,
+  modalShow,
+  setModalShow,
 }) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -73,6 +75,8 @@ function ManageData({
         kit={kit}
         correctiveAction={correctiveAction}
         playerTotalHeight={playerTotalHeight}
+        modalShow={modalShow}
+        setModalShow={setModalShow}
       ></SearchBar>
 
       <h5 className="text-center display-6 mt-5" style={{ color: "#ddd" }}>
