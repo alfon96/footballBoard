@@ -13,8 +13,5 @@
 }
 
 .container {
-  width: 97.56px;
-  height: 120px;
-  position: relative;
   z-index: 99;
 }

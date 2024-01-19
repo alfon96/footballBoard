@@ -5,11 +5,37 @@ html {
 
 /* Default styles for .container */
 .container {
-  max-width: 11.25rem; /* 180px in rem */
-  height: 4.2rem; /* 73.87px in rem */
-  width: auto;
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  z-index: 10;
+}
+
+.shirtContainer {
+  width: 100%;
+  height: 73.68593%;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  z-index: 10;
+}
+
+.nameContainer {
+  width: 100%;
+  height: 26.314%;
+  flex: 1;
+  display: flex;
+
+  align-items: self-start;
   justify-content: center;
   position: relative;
   text-align: center;
@@ -20,7 +46,7 @@ html {
 .kitImage {
   width: 100%;
   height: 100%;
-  position: absolute;
+  object-fit: fill;
 }
 
 /* Default styles for .playerNameContainer */
@@ -54,8 +80,8 @@ html {
   display: flex;
   justify-content: center;
   position: absolute;
-
-  top: 0.1rem; /* 5px in rem */
+  left: 0rem;
+  top: 0.55rem; /* 5px in rem */
   font-size: 2.06rem;
   width: 100%;
   font-weight: bold;

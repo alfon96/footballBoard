@@ -18,6 +18,8 @@ function Toolbar({
   setKit,
   players,
   setShowPlayers,
+  playerHeight,
+  setPlayerHeight,
 }) {
   const handleUndo = () => {
     if (canvasDraw) {
@@ -45,14 +47,17 @@ function Toolbar({
       className="mt-3 p-0 mb-0"
     >
       <ButtonGroup className="" aria-label="First group">
-        <Button variant="dark" onClick={() => setShowPlayers((prev) => !prev)}>
-          Players
+        <Button
+          variant="secondary"
+          onClick={() => setShowPlayers((prev) => !prev)}
+        >
+          Show Players
         </Button>
-        <Button variant="dark" onClick={handleChangeKit}>
+        <Button variant="secondary" onClick={handleChangeKit}>
           Kits
         </Button>
         <Button
-          variant="dark"
+          variant="secondary"
           className="d-flex p-0 m-0 justify-content-center align-items-center h-100"
         >
           <div className=" mx-3 p-0 text-center">Pitch</div>
@@ -64,23 +69,37 @@ function Toolbar({
             onChange={(e) => setBackgroundColor(e.target.value)}
           />
         </Button>{" "}
+        <div
+          className="d-flex px-3 justify-content-center align-items-center h-100 bg-secondary rounded-end-3"
+          style={{ whiteSpace: "nowrap", fontSize: "auto", color: "#ddd" }}
+        >
+          {" "}
+          <p className="p-0 m-0 me-4 ">Player Size</p>
+          <Form.Range
+            value={playerHeight}
+            min={75}
+            step={1}
+            max={150}
+            onChange={(e) => setPlayerHeight(parseFloat(e.target.value))}
+          />
+        </div>
       </ButtonGroup>
 
       <ButtonGroup className="ms-4" aria-label="First group">
         <Button
-          variant="dark"
+          variant="secondary"
           onClick={() => {
             setIsDrawing((prevValue) => !prevValue);
           }}
         >
-          Enable Drawing
+          {isDrawing ? "Disable Drawing" : "Enable Drawing"}
         </Button>{" "}
         {isDrawing && (
           <>
-            <Button variant="dark" onClick={handleUndo}>
+            <Button variant="secondary" onClick={handleUndo}>
               Undo
             </Button>{" "}
-            <Button variant="dark" onClick={handleDeleteAll}>
+            <Button variant="secondary" onClick={handleDeleteAll}>
               Delete All Lines
             </Button>{" "}
             <input
@@ -90,7 +109,7 @@ function Toolbar({
               onChange={(e) => setLineColor(e.target.value)}
             />
             <div
-              className="d-flex px-3 justify-content-center align-items-center h-100 bg-dark rounded-end-3"
+              className="d-flex px-3 justify-content-center align-items-center h-100 bg-secondary rounded-end-3"
               style={{ whiteSpace: "nowrap", fontSize: "auto", color: "#ddd" }}
             >
               {" "}

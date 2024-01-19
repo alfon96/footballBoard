@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import Player from "../Player/Player";
 import classes from "./SearchBar.module.css";
 
-const SearchBar = ({ players, kit }) => {
+const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const onChangeHandler = (e) => {
@@ -54,7 +54,11 @@ const SearchBar = ({ players, kit }) => {
         {searchResults &&
           searchResults.map((player) => {
             return (
-              <div key={player.number} className={classes.container}>
+              <div
+                key={player.number}
+                className={classes.container}
+                style={{ height: playerTotalHeight }}
+              >
                 <Player
                   key={player.number}
                   number={player.number}
@@ -62,6 +66,7 @@ const SearchBar = ({ players, kit }) => {
                   position={player.position}
                   isCaptain={player?.isCaptain}
                   kit={kit}
+                  correctiveAction={correctiveAction}
                 ></Player>
               </div>
             );

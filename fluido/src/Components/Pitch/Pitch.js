@@ -1,11 +1,17 @@
 import Image from "react-bootstrap/Image";
 import fieldPitch from "../../assets/pitch/pitch.svg";
-import trainer from "../../assets/trainer/trainer.jpg";
 import classes from "./Pitch.module.css";
 import CanvasDraw from "react-canvas-draw";
 import { useState } from "react";
 
-const Pitch = ({ isDrawing, setCanvasDraw, lineColor, brushSize }) => {
+const Pitch = ({
+  isDrawing,
+  setCanvasDraw,
+  lineColor,
+  brushSize,
+  correctiveAction,
+  backgroundColor,
+}) => {
   // Configure canvas properties as required
   const canvasProps = {
     ref: setCanvasDraw,
@@ -21,7 +27,13 @@ const Pitch = ({ isDrawing, setCanvasDraw, lineColor, brushSize }) => {
 
   return (
     <>
-      <div className="canvas-container p-0">
+      <div
+        className="canvas-container rounded-5"
+        style={{
+          backgroundColor: backgroundColor,
+          height: 750 * correctiveAction,
+        }}
+      >
         {/* This button is for demonstration; the functionality needs custom implementation. */}
         {isDrawing && (
           <CanvasDraw

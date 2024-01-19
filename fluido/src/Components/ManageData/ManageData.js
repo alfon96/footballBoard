@@ -6,7 +6,14 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import SearchBar from "./SearchBar";
 
-function ManageData({ players, setPlayers, kit }) {
+function ManageData({
+  players,
+  setPlayers,
+  kit,
+  correctiveAction,
+  playerTotalHeight,
+  setShowToast,
+}) {
   const [name, setName] = useState("Player");
   const [number, setNumber] = useState(0);
   const [position, setPosition] = useState("A");
@@ -32,6 +39,7 @@ function ManageData({ players, setPlayers, kit }) {
       kit: 99,
     };
 
+    setShowToast(true);
     setPlayers((prev) => [...prev, newPlayer]);
   };
 
@@ -47,7 +55,12 @@ function ManageData({ players, setPlayers, kit }) {
       <h5 className="text-center display-6 mt-5" style={{ color: "#ddd" }}>
         Search Players
       </h5>
-      <SearchBar players={players} kit={kit}></SearchBar>
+      <SearchBar
+        players={players}
+        kit={kit}
+        correctiveAction={correctiveAction}
+        playerTotalHeight={playerTotalHeight}
+      ></SearchBar>
 
       <h5 className="text-center display-6 mt-5" style={{ color: "#ddd" }}>
         Add Players
