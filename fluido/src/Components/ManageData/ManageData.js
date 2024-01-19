@@ -13,33 +13,46 @@ function ManageData({
   correctiveAction,
   playerTotalHeight,
   setShowToast,
+  formState,
+  setFormState,
 }) {
-  const [name, setName] = useState("Player");
-  const [number, setNumber] = useState(0);
-  const [position, setPosition] = useState("A");
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    const isFormStateIncomplete =
+      formState.name === "" ||
+      formState.number === "" ||
+      formState.position === "";
 
-    const isDuplicateNumber = players.some(
-      (player) => player.number === number
+    if (isFormStateIncomplete) {
+      setShowToast({
+        show: true,
+        type: "fail",
+        message: "Please provide player's name, number and position",
+      });
+      return;
+    }
+
+    const duplicatePlayer = players.find(
+      (player) => player.number === formState.number
     );
 
-    if (isDuplicateNumber) {
-      alert(
-        "Player with the same number already exists. Please choose a different number."
-      );
+    if (duplicatePlayer) {
+      setShowToast({
+        show: true,
+        type: "fail",
+        message: `The number ${duplicatePlayer.number} is already assigned to ${duplicatePlayer.name}. Please choose a different number.`,
+      });
       return;
     }
 
     const newPlayer = {
-      name: name,
-      number: number,
-      position: position,
+      name: formState.name,
+      number: formState.number,
+      position: formState.position,
       kit: 99,
     };
 
-    setShowToast(true);
+    setShowToast({ show: true, type: "success" });
     setPlayers((prev) => [...prev, newPlayer]);
   };
 
@@ -73,14 +86,18 @@ function ManageData({
         <Row className="mb-3 d-flex flex-column justify-content-center align-items-center  w-100 ">
           <Form.Group
             as={Col}
-            md="4"
             style={{ color: "#ddd" }}
             className="w-100 text-center mt-3"
           >
             <Form.Label>Surname</Form.Label>
             <Form.Control
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formState.name}
+              onChange={(e) =>
+                setFormState((prev) => ({
+                  ...prev,
+                  name: e.target.value,
+                }))
+              }
               required
               type="text"
               placeholder="KVARA"
@@ -90,15 +107,19 @@ function ManageData({
           </Form.Group>
           <Form.Group
             as={Col}
-            md="4"
             style={{ color: "#ddd" }}
             className="w-100 text-center mt-3"
           >
             <Form.Label>Number</Form.Label>
             <InputGroup hasValidation>
               <Form.Control
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
+                value={formState.number}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    number: e.target.value,
+                  }))
+                }
                 type="number"
                 placeholder="77"
                 className="text-center "
@@ -111,17 +132,21 @@ function ManageData({
           </Form.Group>
           <Form.Group
             as={Col}
-            md="4"
             style={{ color: "#ddd" }}
             className="w-100 text-center mt-3"
           >
             <Form.Label>Player's position</Form.Label>
             <InputGroup hasValidation>
               <Form.Control
-                value={position}
-                onChange={(e) => setPosition(e.target.value)}
+                value={formState.position}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    position: e.target.value,
+                  }))
+                }
                 type="text"
-                placeholder="Left Wing"
+                placeholder="If goalkeeper just write: GK"
                 required
                 className="text-center "
               />
@@ -131,7 +156,7 @@ function ManageData({
             </InputGroup>
           </Form.Group>
         </Row>
-        <Button type="submit" className="mt-3">
+        <Button type="submit" variant="primary" className="mt-3">
           Add New Player
         </Button>
       </Form>

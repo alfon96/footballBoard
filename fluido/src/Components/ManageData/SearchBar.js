@@ -16,18 +16,20 @@ const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(searchKeyword);
-
+    if (searchKeyword === "") {
+      setSearchResults([]);
+      return;
+    }
     const foundPlayers = players.filter((player) =>
       player.name.includes(searchKeyword.toUpperCase())
     );
-    console.log(foundPlayers);
 
     setSearchResults(foundPlayers ?? null);
   };
 
   return (
     <>
-      <Form onSubmit={onSubmit} className="w-75">
+      <Form onSubmit={onSubmit} className="w-75 ">
         <InputGroup className="mb-3">
           <Form.Control
             type="text"
@@ -36,6 +38,7 @@ const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
             aria-describedby="basic-addon2"
             value={searchKeyword}
             onChange={onChangeHandler}
+            className="text-center"
           />
           <Button
             variant="outline-secondary"
@@ -67,6 +70,7 @@ const SearchBar = ({ players, kit, correctiveAction, playerTotalHeight }) => {
                   isCaptain={player?.isCaptain}
                   kit={kit}
                   correctiveAction={correctiveAction}
+                  isEditing={true}
                 ></Player>
               </div>
             );

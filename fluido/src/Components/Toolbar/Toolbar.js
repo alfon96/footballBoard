@@ -34,12 +34,14 @@ function Toolbar({
   };
 
   const handleChangeKit = () => {
-    if (kit < 1) {
-      setKit(1);
+    if (kit < 3) {
+      setKit((prev) => prev + 1);
     } else {
       setKit(0);
     }
   };
+
+  const kitSrc = require(`../../assets/kits/${kit}/${"kit"}.png`);
 
   return (
     <ButtonToolbar
@@ -53,8 +55,16 @@ function Toolbar({
         >
           Show Players
         </Button>
-        <Button variant="secondary" onClick={handleChangeKit}>
-          Kits
+        <Button
+          variant="secondary"
+          className="d-flex p-0 m-0 justify-content-center align-items-center h-100"
+          onClick={handleChangeKit}
+        >
+          <div className=" mx-3 p-0 text-center">Kits</div>
+          <img
+            style={{ height: "34px", width: "auto", boxFit: "cover" }}
+            src={kitSrc}
+          />
         </Button>
         <Button
           variant="secondary"

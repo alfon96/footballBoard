@@ -18,7 +18,7 @@ html {
 
 .shirtContainer {
   width: 100%;
-  height: 73.68593%;
+  height: 73.68572%;
   display: flex;
 
   flex-direction: column;
@@ -31,7 +31,7 @@ html {
 
 .nameContainer {
   width: 100%;
-  height: 26.314%;
+  height: 26.31427%;
   flex: 1;
   display: flex;
 
@@ -91,8 +91,9 @@ html {
 /* Default styles for .captainBadge */
 .captainBadge {
   position: absolute;
-  top: 0;
-  right: 0.3125rem; /* 5px in rem */
+  top: 0px;
+  right: 0; /* 5px in rem */
+  transform: translate(0, -50%);
   text-align: center;
 }
 

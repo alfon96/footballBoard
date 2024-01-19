@@ -14,8 +14,8 @@ import ManageData from "./Components/ManageData/ManageData";
 import SimpleToast from "./Components/ManageData/SimpleToast";
 
 function App() {
-  const playerShirtStartingHeight = 80;
-  const playerNameStartingHeight = 32.14;
+  const playerShirtStartingHeight = 76.95;
+  const playerNameStartingHeight = 27.48;
   const playerTotalHeight =
     playerShirtStartingHeight + playerNameStartingHeight;
   const [backgroundColor, setBackgroundColor] = useState("#1b718d");
@@ -29,7 +29,16 @@ function App() {
   const [showPlayers, setShowPlayers] = useState(false);
   const [playerSize, setPlayerSize] = useState(playerTotalHeight);
   const [screenAspectRatio, setScreenAspectRatio] = useState(0);
-  const [showToast, setShowToast] = useState(false);
+  const [showToast, setShowToast] = useState({
+    show: false,
+    type: "success",
+    message: "",
+  });
+  const [formState, setFormState] = useState({
+    name: "",
+    number: "",
+    position: "",
+  });
 
   useEffect(() => {
     // Function to update screenAspectRatio
@@ -43,14 +52,13 @@ function App() {
 
     // Initial call to set aspect ratio
     updateAspectRatio();
-
+    console.log(screenAspectRatio);
     // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("resize", updateAspectRatio);
     };
   }, []);
 
-  console.log(screenAspectRatio);
   const initialRatio = 1.36;
   const correctiveActionForScreenResize = screenAspectRatio / initialRatio;
   const correctiveActionForSizeChange = playerSize / playerTotalHeight;
@@ -130,11 +138,14 @@ function App() {
           correctiveAction={correctiveAction}
           playerTotalHeight={playerTotalHeight}
           setShowToast={setShowToast}
+          formState={formState}
+          setFormState={setFormState}
         ></ManageData>
         {showToast && (
           <SimpleToast
             setShowToast={setShowToast}
             showToast={showToast}
+            formState={formState}
           ></SimpleToast>
         )}
       </Row>

@@ -1,8 +1,8 @@
 [
-  { "name": "GOLLINI", "number": "95", "position": "P", "kit": 0 },
-  { "name": "MERET", "number": "1", "position": "P", "kit": 0 },
-  { "name": "CONTINI", "number": "14", "position": "P", "kit": 0 },
-  { "name": "IDASIAK", "number": "16", "position": "P", "kit": 0 },
+  { "name": "GOLLINI", "number": "95", "position": "GK", "kit": 0 },
+  { "name": "MERET", "number": "1", "position": "GK", "kit": 0 },
+  { "name": "CONTINI", "number": "14", "position": "GK", "kit": 0 },
+  { "name": "IDASIAK", "number": "16", "position": "GK", "kit": 0 },
   { "name": "JUAN JESUS", "number": "5", "position": "D", "kit": 11 },
   {
     "name": "DI LORENZO",

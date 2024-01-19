@@ -10,9 +10,10 @@ const Player = ({
   isCaptain,
   kit,
   correctiveAction,
+  isEditing = false,
 }) => {
   const kitSrc = require(`../../assets/kits/${kit}/${
-    position === "P" ? "goalkeeperKit" : "kit"
+    position === "GK" ? "goalkeeperKit" : "kit"
   }.png`);
 
   return (
@@ -30,7 +31,7 @@ const Player = ({
           >
             <p
               className={`${classes.playerNumberText}  ${
-                kit > 0 && classes.playerNumberTextLightKit
+                kit === 1 && classes.playerNumberTextLightKit
               }`}
               style={{
                 fontSize: `${2.06 * correctiveAction}rem`,
@@ -43,7 +44,25 @@ const Player = ({
 
           {/* Captain Badge */}
           {isCaptain && (
-            <Badge bg="warning" className={classes.captainBadge}>
+            <Badge
+              bg="warning"
+              className={`${classes.captainBadge} text-dark m-0 text-center d-flex justify-content-center align-items-center`}
+              style={{ fontSize: `${0.8 * correctiveAction}rem` }}
+            >
+              C
+            </Badge>
+          )}
+          {/* Editing tools */}
+          {isEditing && (
+            <Badge
+              bg="warning"
+              className={`${classes.captainBadge} text-dark m-0 text-center d-flex justify-content-center align-items-center`}
+              style={{
+                fontSize: `${0.8 * correctiveAction}rem`,
+                cursor: "pointer",
+              }}
+              onClick={() => console.log("clicked!")}
+            >
               C
             </Badge>
           )}
