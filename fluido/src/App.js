@@ -84,7 +84,7 @@ function App() {
     <Container
       fluid
       ref={constraintsRef}
-      className="d-flex flex-column justify-content-center screen  position-absolute bg-dark"
+      className="d-flex flex-column pt-2 justify-content-center screen  position-absolute bg-dark"
     >
       <Toolbar
         isDrawing={isDrawing}
