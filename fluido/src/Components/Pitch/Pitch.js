@@ -28,7 +28,7 @@ const Pitch = ({
   return (
     <>
       <div
-        className="canvas-container rounded-5"
+        className={`canvas-container rounded-5 ${classes.preventSelect}`}
         style={{
           backgroundColor: backgroundColor,
           height: 750 * correctiveAction,

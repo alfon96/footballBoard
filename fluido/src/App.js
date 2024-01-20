@@ -103,7 +103,7 @@ function App() {
         playerHeight={playerSize}
         setPlayerHeight={setPlayerSize}
       ></Toolbar>
-      <div className="mt-3"></div>
+      <div className="mt-3  prevent-select"></div>
       <Pitch
         isDrawing={isDrawing}
         setCanvasDraw={setCanvasDraw}

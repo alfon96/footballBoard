@@ -2,9 +2,12 @@
   min-height: 100vh;
 }
 
-.pitch {
-  height: 50%;
-  width: 100%;
+.prevent-select {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .bench {
