@@ -16,7 +16,7 @@ function Toolbar({
   backgroundColor,
   kit,
   setKit,
-  players,
+  showPlayers,
   setShowPlayers,
   playerHeight,
   setPlayerHeight,
@@ -53,7 +53,7 @@ function Toolbar({
           variant="secondary"
           onClick={() => setShowPlayers((prev) => !prev)}
         >
-          Show Players
+          {showPlayers ? "Hide Players" : "Show Players"}
         </Button>
         <Button
           variant="secondary"
