@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -19,6 +19,16 @@ const SearchBar = ({
   const onChangeHandler = (e) => {
     setSearchKeyword(e.target.value);
   };
+
+  useEffect(() => {
+    if (searchKeyword !== "") {
+      const foundPlayers = players.filter((player) =>
+        player.name.includes(searchKeyword.toUpperCase())
+      );
+
+      setSearchResults(foundPlayers ?? null);
+    }
+  }, [players]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -73,10 +83,7 @@ const SearchBar = ({
                   modalShow={modalShow}
                   setModalShow={setModalShow}
                   key={player.number}
-                  number={player.number}
-                  name={player.name}
-                  position={player.position}
-                  isCaptain={player?.isCaptain}
+                  player={player}
                   kit={kit}
                   correctiveAction={correctiveAction}
                   isEditing={true}

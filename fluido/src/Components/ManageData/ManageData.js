@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import SearchBar from "./SearchBar";
+import positions from "../../data/positions.json";
+import { createPlayer } from "../../firebase";
 
 function ManageData({
   players,
@@ -48,14 +50,17 @@ function ManageData({
     }
 
     const newPlayer = {
-      name: formState.name,
+      name: formState.name.toUpperCase(),
       number: formState.number,
       position: formState.position,
-      kit: 99,
+      available: 1,
+      injured: 0,
     };
 
     setShowToast({ show: true, type: "success" });
     setPlayers((prev) => [...prev, newPlayer]);
+
+    createPlayer(newPlayer);
   };
 
   return (
@@ -77,6 +82,7 @@ function ManageData({
         playerTotalHeight={playerTotalHeight}
         modalShow={modalShow}
         setModalShow={setModalShow}
+        setShowToast={setShowToast}
       ></SearchBar>
 
       <h5 className="text-center display-6 mt-5" style={{ color: "#ddd" }}>
@@ -140,24 +146,22 @@ function ManageData({
             className="w-100 text-center mt-3"
           >
             <Form.Label>Player's position</Form.Label>
-            <InputGroup hasValidation>
-              <Form.Control
-                value={formState.position}
-                onChange={(e) =>
-                  setFormState((prev) => ({
-                    ...prev,
-                    position: e.target.value,
-                  }))
-                }
-                type="text"
-                placeholder="If goalkeeper just write: GK"
-                required
-                className="text-center "
-              />
-              <Form.Control.Feedback type="invalid">
-                Please choose a position.
-              </Form.Control.Feedback>
-            </InputGroup>
+            <Form.Select
+              aria-label="Default select example"
+              value={formState.position}
+              className="text-center fs-6"
+              onChange={(e) =>
+                setFormState((prev) => ({ ...prev, position: e.target.value }))
+              }
+            >
+              {Object.entries(positions).map(([key, value], index) => {
+                return (
+                  <option key={index} value={key.trim()}>
+                    {key} : {value}
+                  </option>
+                );
+              })}
+            </Form.Select>
           </Form.Group>
         </Row>
         <Button type="submit" variant="primary" className="mt-3">

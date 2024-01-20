@@ -4,16 +4,15 @@ import Pitch from "./Components/Pitch/Pitch";
 import Player from "./Components/Player/Player";
 import { Drag } from "./Components/draggable/drag";
 import { useRef } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Toolbar from "./Components/Toolbar/Toolbar";
-import { useDraw } from "./hooks/useDraw";
-import fieldPitch from "./assets/pitch/pitch.svg";
 import { useState } from "react";
 import { useEffect } from "react";
 import ManageData from "./Components/ManageData/ManageData";
 import SimpleToast from "./Components/ManageData/SimpleToast";
-import DropdownForm from "./Components/DropdownForm/ModalForm";
-import ModalForm from "./Components/DropdownForm/ModalForm";
+import ModalForm from "./Components/Modals/ModalForm";
+import SimpleModal from "./Components/Modals/SimpleModal";
+import { getPlayers } from "./firebase";
 
 function App() {
   const playerShirtStartingHeight = 76.95;
@@ -66,17 +65,20 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      const playersList = await getPlayers();
+      setPlayers(playersList);
+    };
+
+    fetchPlayers();
+  }, []);
+
   const initialRatio = 1.36;
   const correctiveActionForScreenResize = screenAspectRatio / initialRatio;
   const correctiveActionForSizeChange = playerSize / playerTotalHeight;
   const correctiveAction =
     correctiveActionForScreenResize * correctiveActionForSizeChange;
-
-  useEffect(() => {
-    const playersList = require("./data/players.json");
-
-    setPlayers(playersList);
-  }, []);
 
   return (
     <Container
@@ -126,10 +128,7 @@ function App() {
                   playerShirtStartingHeight={playerShirtStartingHeight}
                   playerNameStartingHeight={playerNameStartingHeight}
                   key={player.number}
-                  number={player.number}
-                  name={player.name}
-                  position={player.position}
-                  isCaptain={player?.isCaptain}
+                  player={player}
                   kit={kit}
                   correctiveAction={correctiveAction}
                 ></Player>
@@ -159,11 +158,24 @@ function App() {
         )}
       </Row>
 
-      {modalShow.show && (
+      {modalShow.show && modalShow.type === "editing" && (
         <ModalForm
-          modalInfo={modalShow.show}
+          modalInfo={modalShow}
           onHide={() => setModalShow(false)}
+          players={players}
+          setPlayers={setPlayers}
         ></ModalForm>
+      )}
+
+      {modalShow.show && modalShow.type === "remove" && (
+        <SimpleModal
+          modalInfo={modalShow}
+          onHide={() => setModalShow(false)}
+          kit={kit}
+          correctiveAction={correctiveAction}
+          playerTotalHeight={playerTotalHeight}
+          setPlayers={setPlayers}
+        ></SimpleModal>
       )}
     </Container>
   );

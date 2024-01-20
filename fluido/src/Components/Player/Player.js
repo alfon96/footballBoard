@@ -4,18 +4,14 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 
 const Player = ({
-  name,
-  number,
-  position,
-  isCaptain,
+  player,
   kit,
   correctiveAction,
   isEditing = false,
   setModalShow,
 }) => {
-  const playerInfo = { name, number, position, isCaptain };
   const kitSrc = require(`../../assets/kits/${kit}/${
-    position === "GK" ? "goalkeeperKit" : "kit"
+    player.position === "GK" ? "goalkeeperKit" : "kit"
   }.png`);
 
   return (
@@ -39,7 +35,7 @@ const Player = ({
                 fontSize: `${2.06 * correctiveAction}rem`,
               }}
             >
-              {number}
+              {player.number}
             </p>
           </div>
           {/* Name */}
@@ -49,7 +45,7 @@ const Player = ({
             className={`${classes.containerBadges}  d-flex flex-column align-items-center justify-content-start`}
           >
             {/* Captain Badge */}
-            {isCaptain && (
+            {player?.isCaptain && (
               <Badge
                 bg="warning"
                 className={`${classes.captainBadge}  m-0 text-center d-flex justify-content-center align-items-center`}
@@ -70,7 +66,7 @@ const Player = ({
                   setModalShow({
                     show: true,
                     type: "editing",
-                    playerInfo: playerInfo,
+                    playerInfo: player,
                   })
                 }
                 style={{
@@ -92,7 +88,7 @@ const Player = ({
                   setModalShow({
                     show: true,
                     type: "remove",
-                    playerInfo: playerInfo,
+                    playerInfo: player,
                   })
                 }
                 style={{
@@ -115,7 +111,7 @@ const Player = ({
               fontSize: `${1.25 * correctiveAction}rem`,
             }}
           >
-            {name}
+            {player.name}
           </p>
         </div>
       </div>

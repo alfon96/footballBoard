@@ -1,8 +1,0 @@
-.dropdown-toggle::after {
-  display: none !important;
-}
-
-.form-container {
-  position: relative;
-  z-index: 25 !important;
-}
