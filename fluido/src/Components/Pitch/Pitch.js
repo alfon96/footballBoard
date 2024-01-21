@@ -9,7 +9,7 @@ const Pitch = ({
   setCanvasDraw,
   lineColor,
   brushSize,
-  correctiveAction,
+  screenHeight,
   backgroundColor,
 }) => {
   // Configure canvas properties as required
@@ -19,7 +19,7 @@ const Pitch = ({
     brushRadius: brushSize,
     lazyRadius: 0,
     canvasWidth: 1150,
-    canvasHeight: 750,
+    canvasHeight: screenHeight * 0.85,
     hideGrid: true,
     backgroundColor: "transparent",
     hideInterface: true,
@@ -28,10 +28,10 @@ const Pitch = ({
   return (
     <>
       <div
-        className={`canvas-container rounded-5 ${classes.preventSelect}`}
+        className={`canvas-container rounded-5 mt-3 ${classes.preventSelect}`}
         style={{
           backgroundColor: backgroundColor,
-          height: 750 * correctiveAction,
+          height: screenHeight * 0.85,
         }}
       >
         {/* This button is for demonstration; the functionality needs custom implementation. */}

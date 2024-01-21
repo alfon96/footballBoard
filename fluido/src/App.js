@@ -22,6 +22,7 @@ function App() {
   const [backgroundColor, setBackgroundColor] = useState("#1b718d");
   const constraintsRef = useRef(null);
   const [lineColor, setLineColor] = useState("#fbff00");
+  const [screenHeight, setScreenHeight] = useState(0);
   const [isDrawing, setIsDrawing] = useState(false);
   const [canvasDraw, setCanvasDraw] = useState(null);
   const [brushSize, setBrushSize] = useState(3);
@@ -51,6 +52,7 @@ function App() {
     const updateAspectRatio = () => {
       const aspectRatio = window.innerWidth / window.innerHeight;
       setScreenAspectRatio(aspectRatio);
+      setScreenHeight(window.innerHeight ?? 0);
     };
 
     // Listen for resize events
@@ -74,7 +76,8 @@ function App() {
     fetchPlayers();
   }, []);
 
-  const initialRatio = 1.36;
+  const initialRatio = 1.954;
+
   const correctiveActionForScreenResize = screenAspectRatio / initialRatio;
   const correctiveActionForSizeChange = playerSize / playerTotalHeight;
   const correctiveAction =
@@ -103,13 +106,13 @@ function App() {
         playerHeight={playerSize}
         setPlayerHeight={setPlayerSize}
       ></Toolbar>
-      <div className="mt-3  prevent-select"></div>
+
       <Pitch
         isDrawing={isDrawing}
         setCanvasDraw={setCanvasDraw}
         lineColor={lineColor}
         brushSize={brushSize}
-        correctiveAction={correctiveActionForScreenResize}
+        screenHeight={screenHeight}
         backgroundColor={backgroundColor}
       ></Pitch>
 
