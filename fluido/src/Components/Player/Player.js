@@ -12,9 +12,16 @@ const Player = ({
   isEditing = false,
   setModalShow,
 }) => {
+  let correctionForCenteringNumber = 0;
   const kitSrc = require(`../../assets/kits/${kit}/${
     player.position === "GK" ? "goalkeeperKit" : "kit"
   }.png`);
+
+  if (player.position == "GK") {
+    correctionForCenteringNumber = -1.5;
+  } else {
+    correctionForCenteringNumber = 0.2;
+  }
 
   return (
     <>
@@ -41,6 +48,7 @@ const Player = ({
               }`}
               style={{
                 fontSize: `${totalPlayerHeight * 0.018}rem`,
+                left: correctionForCenteringNumber,
               }}
             >
               {player.number}
