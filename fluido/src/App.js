@@ -143,7 +143,9 @@ function App() {
           players={players}
           setPlayers={setPlayers}
           kit={kit}
-          playerTotalHeight={playerComputedHeight}
+          totalPlayerHeight={totalPlayerHeight}
+          totalPlayerWidth={playerComputedWidth}
+          playerShirtHeight={playerComputedHeight}
           setShowToast={setShowToast}
           formState={formState}
           setFormState={setFormState}
@@ -171,8 +173,10 @@ function App() {
           modalInfo={modalShow}
           onHide={() => setModalShow(false)}
           kit={kit}
-          playerTotalHeight={playerComputedHeight}
           setPlayers={setPlayers}
+          totalPlayerHeight={totalPlayerHeight}
+                  totalPlayerWidth={playerComputedWidth}
+                  playerShirtHeight={playerComputedHeight}
         ></SimpleModal>
       )}
     </Container>

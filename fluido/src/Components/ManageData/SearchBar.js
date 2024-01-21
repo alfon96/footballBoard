@@ -9,8 +9,9 @@ import classes from "./SearchBar.module.css";
 const SearchBar = ({
   players,
   kit,
-  correctiveAction,
-  playerTotalHeight,
+  totalPlayerHeight,
+  totalPlayerWidth,
+  playerShirtHeight,
   modalShow,
   setModalShow,
 }) => {
@@ -77,7 +78,7 @@ const SearchBar = ({
               <div
                 key={player.number}
                 className={classes.container}
-                style={{ height: playerTotalHeight }}
+                style={{ height: totalPlayerHeight }}
               >
                 <Player
                   modalShow={modalShow}
@@ -85,8 +86,10 @@ const SearchBar = ({
                   key={player.number}
                   player={player}
                   kit={kit}
-                  correctiveAction={correctiveAction}
                   isEditing={true}
+                  totalPlayerHeight={totalPlayerHeight}
+                  totalPlayerWidth={totalPlayerWidth}
+                  playerShirtHeight={playerShirtHeight}
                 ></Player>
               </div>
             );

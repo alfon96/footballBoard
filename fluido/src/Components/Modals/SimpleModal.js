@@ -8,7 +8,9 @@ const SimpleModal = ({
   modalInfo,
   onHide,
   kit,
-  playerTotalHeight,
+  totalPlayerHeight,
+  totalPlayerWidth,
+  playerShirtHeight,
   correctiveAction,
   setPlayers,
 }) => {
@@ -29,13 +31,15 @@ const SimpleModal = ({
           <div
             key={modalInfo.playerInfo.number}
             className={classes.container}
-            style={{ height: playerTotalHeight }}
+            style={{ height: totalPlayerHeight }}
           >
             <Player
               key={modalInfo.playerInfo.number}
               player={modalInfo.playerInfo}
               kit={kit}
-              correctiveAction={correctiveAction}
+              totalPlayerHeight={totalPlayerHeight}
+              totalPlayerWidth={totalPlayerWidth}
+              playerShirtHeight={playerShirtHeight}
               isEditing={false}
             ></Player>
           </div>

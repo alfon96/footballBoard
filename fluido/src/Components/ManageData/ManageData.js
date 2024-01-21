@@ -13,7 +13,9 @@ function ManageData({
   setPlayers,
   kit,
   correctiveAction,
-  playerTotalHeight,
+  totalPlayerHeight,
+  totalPlayerWidth,
+  playerShirtHeight,
   setShowToast,
   formState,
   setFormState,
@@ -79,7 +81,9 @@ function ManageData({
         players={players}
         kit={kit}
         correctiveAction={correctiveAction}
-        playerTotalHeight={playerTotalHeight}
+        totalPlayerHeight={totalPlayerHeight}
+        totalPlayerWidth={totalPlayerWidth}
+        playerShirtHeight={playerShirtHeight}
         modalShow={modalShow}
         setModalShow={setModalShow}
         setShowToast={setShowToast}
