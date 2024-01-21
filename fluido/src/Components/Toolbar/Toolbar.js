@@ -87,9 +87,9 @@ function Toolbar({
           <p className="p-0 m-0 me-4 ">Player Size</p>
           <Form.Range
             value={playerHeight}
-            min={75}
-            step={1}
-            max={150}
+            min={0.5}
+            step={0.025}
+            max={2.5}
             onChange={(e) => setPlayerHeight(parseFloat(e.target.value))}
           />
         </div>

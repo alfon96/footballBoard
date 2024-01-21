@@ -2,22 +2,15 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import classes from "./drag.module.css";
 
-export const Drag = ({
-  children,
-  parentRef,
-  correctiveAction,
-  playerHeight,
-  playerNameStartingHeight,
-}) => {
+export const Drag = ({ children, parentRef, playerWidth, playerHeight }) => {
   const playerAspectRatio = 0.8122743682;
 
-  const playerWidth = playerHeight * playerAspectRatio;
   return (
     <motion.div
       drag
       style={{
-        width: playerWidth * correctiveAction,
-        height: (playerHeight + playerNameStartingHeight) * correctiveAction,
+        width: playerWidth,
+        height: playerHeight,
       }}
       dragConstraints={parentRef}
       dragElastic={0.8}

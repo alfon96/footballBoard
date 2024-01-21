@@ -6,7 +6,9 @@ import Button from "react-bootstrap/Button";
 const Player = ({
   player,
   kit,
-  correctiveAction,
+  totalPlayerHeight,
+  totalPlayerWidth,
+  playerShirtHeight,
   isEditing = false,
   setModalShow,
 }) => {
@@ -16,8 +18,14 @@ const Player = ({
 
   return (
     <>
-      <div className={`${classes.container}   m-0 p-0`}>
-        <div className={`${classes.shirtContainer}  m-0 p-0`}>
+      <div
+        className={`${classes.container}   m-0 p-0`}
+        style={{ height: totalPlayerHeight, width: totalPlayerWidth }}
+      >
+        <div
+          className={`${classes.shirtContainer}  m-0 p-0`}
+          style={{ height: playerShirtHeight, width: totalPlayerWidth }}
+        >
           <Image
             src={kitSrc}
             className={classes.kitImage}
@@ -32,7 +40,7 @@ const Player = ({
                 kit === 1 && classes.playerNumberTextLightKit
               }`}
               style={{
-                fontSize: `${2.06 * correctiveAction}rem`,
+                fontSize: `${totalPlayerHeight * 0.018}rem`,
               }}
             >
               {player.number}
@@ -50,7 +58,7 @@ const Player = ({
                 bg="warning"
                 className={`${classes.captainBadge}  m-0 text-center d-flex justify-content-center align-items-center`}
                 style={{
-                  fontSize: `${0.8 * correctiveAction}rem`,
+                  fontSize: `${totalPlayerHeight * 0.008}rem`,
                   color: "#333",
                 }}
               >
@@ -73,7 +81,7 @@ const Player = ({
                   transform: "scale(0.8)",
                   margin: 0,
                   color: "#eee",
-                  fontSize: `${0.8 * correctiveAction}rem`,
+                  fontSize: `${totalPlayerHeight * 0.008}rem`,
                 }}
               >
                 {" "}
@@ -95,7 +103,7 @@ const Player = ({
                   transform: "scale(0.8)",
                   margin: 0,
                   color: "#eee",
-                  fontSize: `${0.8 * correctiveAction}rem`,
+                  fontSize: `${totalPlayerHeight * 0.008}rem`,
                 }}
               >
                 {" "}
@@ -104,11 +112,17 @@ const Player = ({
             )}
           </div>
         </div>
-        <div className={`${classes.nameContainer}  m-0 p-0`}>
+        <div
+          className={`${classes.nameContainer}  m-0 p-0`}
+          style={{
+            height: totalPlayerHeight - playerShirtHeight,
+            width: totalPlayerWidth,
+          }}
+        >
           <p
             className={`${classes.playerNameText} rounded-2 px-2  m-0`}
             style={{
-              fontSize: `${1.25 * correctiveAction}rem`,
+              fontSize: `${totalPlayerHeight * 0.011}rem`,
             }}
           >
             {player.name}

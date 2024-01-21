@@ -15,12 +15,10 @@ import SimpleModal from "./Components/Modals/SimpleModal";
 import { getPlayers } from "./firebase";
 
 function App() {
-  const playerShirtStartingHeight = 76.95;
-  const playerNameStartingHeight = 27.48;
-  const playerTotalHeight =
-    playerShirtStartingHeight + playerNameStartingHeight;
+  const playerAspectRatio = 0.8122743682;
   const [backgroundColor, setBackgroundColor] = useState("#1b718d");
   const constraintsRef = useRef(null);
+
   const [lineColor, setLineColor] = useState("#fbff00");
   const [screenHeight, setScreenHeight] = useState(0);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -29,7 +27,7 @@ function App() {
   const [kit, setKit] = useState(0);
   const [players, setPlayers] = useState([]);
   const [showPlayers, setShowPlayers] = useState(false);
-  const [playerSize, setPlayerSize] = useState(playerTotalHeight);
+  const [playerSize, setPlayerSize] = useState(1.1);
   const [screenAspectRatio, setScreenAspectRatio] = useState(0);
   const [showToast, setShowToast] = useState({
     show: false,
@@ -76,12 +74,12 @@ function App() {
     fetchPlayers();
   }, []);
 
-  const initialRatio = 1.954;
-
-  const correctiveActionForScreenResize = screenAspectRatio / initialRatio;
-  const correctiveActionForSizeChange = playerSize / playerTotalHeight;
-  const correctiveAction =
-    correctiveActionForScreenResize * correctiveActionForSizeChange;
+  const pitchHeight = screenHeight * 0.85;
+  const nPlayersInACol = 7;
+  const playerNameContainerHeight = 32;
+  const totalPlayerHeight = (pitchHeight / nPlayersInACol) * playerSize;
+  const playerComputedHeight = totalPlayerHeight - playerNameContainerHeight;
+  const playerComputedWidth = playerComputedHeight * playerAspectRatio;
 
   return (
     <Container
@@ -123,17 +121,16 @@ function App() {
               <Drag
                 key={player.number}
                 parentRef={constraintsRef}
-                correctiveAction={correctiveAction}
-                playerHeight={playerShirtStartingHeight}
-                playerNameStartingHeight={playerNameStartingHeight}
+                playerHeight={totalPlayerHeight}
+                playerWidth={playerComputedWidth}
               >
                 <Player
-                  playerShirtStartingHeight={playerShirtStartingHeight}
-                  playerNameStartingHeight={playerNameStartingHeight}
                   key={player.number}
                   player={player}
                   kit={kit}
-                  correctiveAction={correctiveAction}
+                  totalPlayerHeight={totalPlayerHeight}
+                  totalPlayerWidth={playerComputedWidth}
+                  playerShirtHeight={playerComputedHeight}
                 ></Player>
               </Drag>
             );
@@ -146,8 +143,7 @@ function App() {
           players={players}
           setPlayers={setPlayers}
           kit={kit}
-          correctiveAction={correctiveAction}
-          playerTotalHeight={playerTotalHeight}
+          playerTotalHeight={playerComputedHeight}
           setShowToast={setShowToast}
           formState={formState}
           setFormState={setFormState}
@@ -175,8 +171,7 @@ function App() {
           modalInfo={modalShow}
           onHide={() => setModalShow(false)}
           kit={kit}
-          correctiveAction={correctiveAction}
-          playerTotalHeight={playerTotalHeight}
+          playerTotalHeight={playerComputedHeight}
           setPlayers={setPlayers}
         ></SimpleModal>
       )}
