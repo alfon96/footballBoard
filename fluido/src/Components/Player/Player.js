@@ -47,8 +47,9 @@ const Player = ({
                 kit === 1 && classes.playerNumberTextLightKit
               }`}
               style={{
-                fontSize: `${totalPlayerHeight * 0.018}rem`,
+                fontSize: `${totalPlayerHeight * 0.0198}rem`,
                 left: correctionForCenteringNumber,
+                top: `${playerShirtHeight * 0.0022}rem`,
               }}
             >
               {player.number}
@@ -128,7 +129,7 @@ const Player = ({
           }}
         >
           <p
-            className={`${classes.playerNameText} rounded-2 px-2  m-0`}
+            className={`${classes.playerNameText} rounded-2 px-2   m-0`}
             style={{
               fontSize: `${totalPlayerHeight * 0.011}rem`,
             }}

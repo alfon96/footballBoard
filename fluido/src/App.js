@@ -175,8 +175,8 @@ function App() {
           kit={kit}
           setPlayers={setPlayers}
           totalPlayerHeight={totalPlayerHeight}
-                  totalPlayerWidth={playerComputedWidth}
-                  playerShirtHeight={playerComputedHeight}
+          totalPlayerWidth={playerComputedWidth}
+          playerShirtHeight={playerComputedHeight}
         ></SimpleModal>
       )}
     </Container>
